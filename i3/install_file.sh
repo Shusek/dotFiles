@@ -1,4 +1,4 @@
 
 
 #symlinks
-ln -sfv config/config ~/.config/sway/config
+n -sfv ~/tools/dotFiles/i3/config/config ~/.config/sway/config
