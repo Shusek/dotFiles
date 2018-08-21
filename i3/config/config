@@ -18,8 +18,9 @@ set $right l
 set $term termite
 # Rofi
 bindsym $alt+Tab exec rofi -show window
-set $execute_rofi exec rofi -show run -eh 2 -padding 400 -fullscreen
-bindsym $alt+d $execute_rofi
+bindsym $alt+d exec j4-dmenu-desktop --dmenu="(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu -i"
+bindsym $mod+y exec swaymsg -t get_tree | jq '.. | objects | select(.nodes? == []) | .id,.window_properties.class,.window_properties.title'  | dmenu -i -fn 'Roboto-30' -l 5 -nb '#334455' -nf '#aacccc' -sb '#000000'
+
 focus_follows_mouse no
 ### Output configuration
 # Background
@@ -51,10 +52,9 @@ bindsym $mod+i exec firefox
 #
     # start a terminal
     bindsym $mod+Return exec $term
- bindsym $mod+k exec swaylock -c 000000 # lock screen
+ bindsym $alt+k exec swaylock -c 000000 # lock screen
     # killed window
     bindsym $mod+Shift+q kill
-
     
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -120,7 +120,8 @@ bindsym $mod+i exec firefox
 
 # switch through workspaces
 bindsym $mod+Alt+Left workspace prev
-bindsym $mod+Alt+Right workspace Note
+bindsym $mod+Alt+Right workspace next
+workspace_auto_back_and_forth yes
     # next: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
