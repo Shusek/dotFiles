@@ -186,7 +186,11 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
+#assign
+for_window [title="^Android Emulator -"] floating enable
+assign [class="^TelegramDesktop$"] 3
+assign [class="^Qemu-system-x86_64$"] 6
+for_window [class="^mpv$"] focus
 #
 # Status Bar:
 #
@@ -204,5 +208,11 @@ exec swayidle \
 	before-sleep swaylock \
 	timeout 180 swaylock \
 	timeout 300 "systemctl suspend"
+
+exec export _JAVA_AWT_WM_NONREPARENTING=1
+exec wmname LG3D
+for_window [class="^jetbrains-.+"][window_type=dialog] focus
+for_window [instance="sun-awt-X11-XWindowPeer"] border pixel 0
+
 
 include /etc/sway/config.d/*
