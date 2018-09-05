@@ -24,7 +24,7 @@ bindsym $mod+y exec swaymsg -t get_tree | jq '.. | objects | select(.nodes? == [
 focus_follows_mouse no
 ### Output configuration
 # Background
-output * bg ~/tools/dotFiles/i3/saitama_walpaper.jpg fill
+output * bg ~/tools/dotFiles/i3/mr.robot_wall_paper_1920_1080.jpg fill
 #
 # Example configuration:
 #
@@ -186,11 +186,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-#assign
-for_window [title="^Android Emulator -"] floating enable
-assign [class="^TelegramDesktop$"] 3
-assign [class="^Qemu-system-x86_64$"] 6
-for_window [class="^mpv$"] focus
+
 #
 # Status Bar:
 #
@@ -203,16 +199,11 @@ bar {
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
-
+for_window [instance="sun-awt-X11-XWindowPeer"] border pixel 0
 exec swayidle \
 	before-sleep swaylock \
 	timeout 180 swaylock \
 	timeout 300 "systemctl suspend"
 
-exec export _JAVA_AWT_WM_NONREPARENTING=1
-exec wmname LG3D
-for_window [class="^jetbrains-.+"][window_type=dialog] focus
-for_window [instance="sun-awt-X11-XWindowPeer"] border pixel 0
-
-
 include /etc/sway/config.d/*
+
